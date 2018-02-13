@@ -1,25 +1,29 @@
 #include "linked_list.h"
 
-linked_list_int* nil() {
-	linked_list_int *liste = NULL;
-	liste = malloc(sizeof(linked_list_int));
+void print_elt(elt e){
+    printf("%d", e.value);
+}
+
+list* nil() {
+	list *liste = NULL;
+	liste = malloc(sizeof(list));
 	if (liste == NULL) {exit(EXIT_FAILURE);}
 	liste->first = NULL;
 	return liste;
 }
 
-void cons(linked_list_int *liste, int e) {
-	cell_int *p_cell = NULL;
-	p_cell = malloc(sizeof(cell_int));
+void cons(list *liste, elt e) {
+	cell *p_cell = NULL;
+	p_cell = malloc(sizeof(cell));
 	if (p_cell == NULL || liste == NULL) {exit(EXIT_FAILURE);}
-	p_cell->value = e;
+	p_cell->data = e;
 	p_cell->next = liste->first;
 	liste->first = p_cell;
 }
 
-int size(linked_list_int *liste) {
+int size(list *liste) {
 	int size = 0;
-	cell_int* p = liste->first;
+	cell* p = liste->first;
 	while(p != NULL){
 		size++;
 		p = p->next;
@@ -27,52 +31,52 @@ int size(linked_list_int *liste) {
 	return size;
 }
 
-bool is_empty(linked_list_int *liste) {
+bool is_empty(list *liste) {
 	return(liste->first==NULL);
 }
 
-int get_element(linked_list_int *liste, int n) {
+elt get_element(list *liste, int n) {
 	assert(n >= 0);assert(n <= size(liste));
 	int i = 1;
-	cell_int *p = liste->first;
+	cell *p = liste->first;
 	for(i = 1; i < n; i++){p=p->next;}
-	return p->value;
+	return p->data;
 }
 
-void insert_element(linked_list_int *liste, int e, int place) {
+void insert_element(list *liste, elt e, int place) {
 	if(place == 0) {cons(liste, e);}
 	else{
 		if(place > size(liste)+1) {place = size(liste)+1;}
 		int i = 1;
-		cell_int *p = liste->first, *new = NULL;
-		new = malloc(sizeof(cell_int));
+		cell *p = liste->first, *new = NULL;
+		new = malloc(sizeof(cell));
 		if (new == NULL) {exit(EXIT_FAILURE);}
-		new->value = e;
+		new->data = e;
 		for(i = 1; i < place-1; i++){p=p->next;}
 		new->next = p->next;
 		p->next = new;
 	}
 }
 
-void remove_element(linked_list_int *liste, int place) {
+void remove_element(list *liste, int place) {
 	if(place == 1){
-		cell_int *p_toFree = liste->first;
+		cell *p_toFree = liste->first;
 		liste->first = p_toFree->next;
 		free(p_toFree);
 	}
 	else if(place < size(liste) && place > 0){
 		int i;
-		cell_int *p = liste->first;
+		cell *p = liste->first;
 		for(i = 1; i < place-1; i++){p=p->next;}
-		cell_int *p_toFree = p->next;
+		cell *p_toFree = p->next;
 		p->next = p_toFree->next;
 		free(p_toFree);
 	}
 }
 
-void deallocate_list(linked_list_int *liste) {
+void deallocate_list(list *liste) {
 	if(!is_empty(liste)){
-		cell_int *p, *pNext;
+		cell *p, *pNext;
 		p = liste->first; pNext = p->next;
 		while(p != NULL){
 			free(p);
@@ -83,11 +87,11 @@ void deallocate_list(linked_list_int *liste) {
 	free(liste);
 }
 
-void print_list(linked_list_int *liste) {
-	cell_int *p = liste->first;
+void print_list(list *liste) {
+	cell *p = liste->first;
 	//printf("\n");
 	while(p != NULL){
-		printf("%d -> ", p->value);
+		print_elt(p->data);printf(" -> ");
 		p = p->next;
 	}
 	printf("NULL");

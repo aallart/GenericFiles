@@ -8,31 +8,31 @@
 
 	#define NDEBUG 1
 
-	typedef struct cell_int  cell_int;
-	typedef struct linked_list_int linked_list_int;
+	typedef struct cell  cell;
+	typedef struct list list;
 	typedef struct element elt;
 
 	struct element{
         int value;
     };
 
-	struct cell_int {
-		int value;
-		cell_int *next;
+	struct cell {
+		elt data;
+		cell *next;
 	};
 
-	struct linked_list_int{
-		cell_int *first;
+	struct list{
+		cell *first;
 	};
 
-	linked_list_int* nil();
-	void cons(linked_list_int *liste, int e);
-	int size(linked_list_int *liste);
-	bool is_empty(linked_list_int *liste);
-	int get_element(linked_list_int *liste, int n);
-	void insert_element(linked_list_int *liste, int e, int place);
-	void remove_element(linked_list_int *liste, int place);
-	void deallocate_list(linked_list_int *liste);
-	void print_list(linked_list_int *liste);
+	list* nil();    //Create empty list
+	void cons(list *liste, elt e);      //append e to liste
+	int size(list *liste);
+	bool is_empty(list *liste);
+	elt get_element(list *liste, int n);
+	void insert_element(list *liste, elt e, int place);     //Start counting at 1
+	void remove_element(list *liste, int place);    //Start counting at 1
+	void deallocate_list(list *liste);
+	void print_list(list *liste);
 
 #endif // LINKED_LIST_H_INCLUDED
