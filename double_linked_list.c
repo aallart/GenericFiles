@@ -37,7 +37,26 @@ void cons(dlist *p_list, elt data){
         p_cell->previous = NULL;
         if (p_list->size > 0)
             (p_list->first)->previous = p_cell;
+        else
+            p_list->last = p_cell;
         p_list->first = p_cell;
+        p_list->size += 1;
+    }
+}
+
+void snoc(dlist *p_list, elt data){
+    if(p_list != NULL){
+        cell *p_cell = NULL;
+        p_cell = malloc(sizeof(cell));
+        if (p_cell == NULL) {exit(EXIT_FAILURE);}
+        p_cell->data = data;
+        p_cell->previous = p_list->last;
+        p_cell->next = NULL;
+        if (p_list->size > 0)
+            (p_list->last)->next = p_cell;
+        else
+            p_list->first = p_cell;
+        p_list->last = p_cell;
         p_list->size += 1;
     }
 }
