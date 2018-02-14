@@ -3,7 +3,7 @@
 #include "double_linked_list.h"
 
 int main(void) {
-
+    int i;
 //    //  linked_list tests
     elt elements[] = {{3}, {7}, {-2}, {4}, {11}, {16}};
 //	list *liste = nil();
@@ -24,7 +24,8 @@ int main(void) {
     print_list(p_list);printf(" => empty = %s\n", (is_empty(p_list))?"yes":"no");
     cons(p_list, elements[0]);cons(p_list, elements[1]);cons(p_list, elements[2]);
     snoc(p_list, elements[3]);
-    print_list(p_list);printf(" => empty = %s\n", (is_empty(p_list))?"yes":"no");
+    print_list(p_list);printf(" => empty = %s", (is_empty(p_list))?"yes":"no");
+    for(i = 0; i < 4; i++) {printf("\n%dth element: ", i); print_elt(get_element(p_list, i));}
 
     return 0;
 }

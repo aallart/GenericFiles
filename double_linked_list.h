@@ -148,7 +148,7 @@ bool is_empty(const dlist *p_list);
  *
  * @return the value stored at position `pos`
  */
-int get_element(const dlist *p_list, int pos);
+elt get_element(const dlist *p_list, int pos);
 
 /**
  * @brief Insert an element in the list at a specified position

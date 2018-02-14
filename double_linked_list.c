@@ -68,3 +68,10 @@ int size(const dlist *p_list){
 bool is_empty(const dlist *p_list){
     return size(p_list)==0;
 }
+
+elt get_element(const dlist *p_list, int pos){
+    int i;
+    cell* p = p_list->first;
+    for(i = 0; i < pos; i++) {p = p->next;}
+    return p->data;
+}
