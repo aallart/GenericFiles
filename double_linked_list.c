@@ -121,3 +121,13 @@ void remove_element(dlist *p_list, int pos){
         p_list->size--;
     }
 }
+
+void deallocate_list(dlist *p_list){
+    cell *p = p->first;
+    while(p->next != NULL){
+        p = p->next;
+        free(p->previous);
+    }
+    free(p);
+    free(p_list);
+}
