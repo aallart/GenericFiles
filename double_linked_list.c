@@ -123,7 +123,7 @@ void remove_element(dlist *p_list, int pos){
 }
 
 void deallocate_list(dlist *p_list){
-    cell *p = p->first;
+    cell *p = p_list->first;
     while(p->next != NULL){
         p = p->next;
         free(p->previous);

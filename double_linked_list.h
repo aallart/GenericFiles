@@ -63,12 +63,12 @@ struct cell {
  * @brief An alias for the structure representing the
  *        double linked list
  */
-typedef struct double_linked_list dlist;
+typedef struct dlist dlist;
 
 /**
  * @brief The structure representing a double linked list
  */
-struct double_linked_list {
+struct dlist {
     /** the size of the list */
     int      size;
     /** the first cell in the list */

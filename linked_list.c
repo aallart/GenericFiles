@@ -9,6 +9,7 @@ list* nil() {
 	liste = malloc(sizeof(list));
 	if (liste == NULL) {exit(EXIT_FAILURE);}
 	liste->first = NULL;
+	liste->size = 0;
 	return liste;
 }
 
@@ -20,17 +21,12 @@ void cons(list *liste, elt e) {
         p_cell->data = e;
         p_cell->next = liste->first;
         liste->first = p_cell;
+        liste->size++;
     }
 }
 
 int size(list *liste) {
-	int size = 0;
-	cell* p = liste->first;
-	while(p != NULL){
-		size++;
-		p = p->next;
-	}
-	return size;
+    return liste->size;
 }
 
 bool is_empty(list *liste) {
@@ -38,30 +34,30 @@ bool is_empty(list *liste) {
 }
 
 elt get_element(list *liste, int n) {
-	assert(n >= 0);assert(n <= size(liste));
-	int i = 1;
+	int i = 0;
 	cell *p = liste->first;
-	for(i = 1; i < n; i++){p=p->next;}
+	for(i = 0; i < n; i++){p=p->next;}
 	return p->data;
 }
 
 void insert_element(list *liste, elt e, int place) {
-	if(place == 1) {cons(liste, e);}
+	if(place == 0) {cons(liste, e);}
 	else if(place > 0){
-		if(place > size(liste)+1) {place = size(liste)+1;}
-		int i = 1;
+		if(place > size(liste)) {place = size(liste);}
+		int i;
 		cell *p = liste->first, *new = NULL;
 		new = malloc(sizeof(cell));
 		if (new == NULL) {exit(EXIT_FAILURE);}
 		new->data = e;
-		for(i = 1; i < place-1; i++){p=p->next;}
+		for(i = 1; i < place; i++){p=p->next;}
 		new->next = p->next;
 		p->next = new;
+		liste->size++;
 	}
 }
 
 void remove_element(list *liste, int place) {
-	if(place == 1){
+	if(place == 0){
 		cell *p_toFree = liste->first;
 		liste->first = p_toFree->next;
 		free(p_toFree);
@@ -69,7 +65,7 @@ void remove_element(list *liste, int place) {
 	else if(place < size(liste) && place > 0){
 		int i;
 		cell *p = liste->first;
-		for(i = 1; i < place-1; i++){p=p->next;}
+		for(i = 1; i < place; i++){p=p->next;}
 		cell *p_toFree = p->next;
 		p->next = p_toFree->next;
 		free(p_toFree);
@@ -91,7 +87,6 @@ void deallocate_list(list *liste) {
 
 void print_list(list *liste) {
 	cell *p = liste->first;
-	//printf("\n");
 	while(p != NULL){
 		print_elt(p->data);printf(" -> ");
 		p = p->next;
