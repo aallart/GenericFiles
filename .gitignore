@@ -1,3 +1,5 @@
 GenericFiles.depend
+GenericFiles.layout
 bin/
 obj/
+doxygen/

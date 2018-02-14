@@ -13,12 +13,14 @@ list* nil() {
 }
 
 void cons(list *liste, elt e) {
-	cell *p_cell = NULL;
-	p_cell = malloc(sizeof(cell));
-	if (p_cell == NULL || liste == NULL) {exit(EXIT_FAILURE);}
-	p_cell->data = e;
-	p_cell->next = liste->first;
-	liste->first = p_cell;
+    if(liste != NULL){
+        cell *p_cell = NULL;
+        p_cell = malloc(sizeof(cell));
+        if (p_cell == NULL {exit(EXIT_FAILURE);}
+        p_cell->data = e;
+        p_cell->next = liste->first;
+        liste->first = p_cell;
+    }
 }
 
 int size(list *liste) {
