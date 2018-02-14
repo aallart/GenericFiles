@@ -71,8 +71,14 @@ bool is_empty(const dlist *p_list){
 
 elt get_element(const dlist *p_list, int pos){
     int i;
-    cell* p = p_list->first;
-    for(i = 0; i < pos; i++) {p = p->next;}
+    cell* p;
+    if(pos <= p_list->size/2){ //start counting at the beginning
+        p = p_list->first;
+        for(i = 0; i < pos; i++) {p = p->next;}
+    }else{      //at the end
+        p = p_list->last;
+        for(i = p_list->size-1; i > pos; i--) {p = p->previous;}
+    }
     return p->data;
 }
 
@@ -82,11 +88,17 @@ void insert_element(dlist *p_list, int pos, elt data){
         else if(pos == p_list->size) snoc(p_list, data);    //at the end
         else{                                   //somewhere else
             int i;
-            cell *p = p_list->first, *p_new = NULL, *p_temp = NULL;
+            cell *p = NULL, *p_new = NULL, *p_temp = NULL;
             p_new = malloc(sizeof(*p_new));
             if(p_new == NULL) exit(EXIT_FAILURE);
             p_new->data = data;
-            for(i = 1; i < pos; i++){p = p->next;}
+            if(pos <= p_list->size/2){      //if before the middle
+                p = p_list->first;
+                for(i = 1; i < pos; i++){p = p->next;}
+            }else{
+                p = p_list->last;
+                for(i = p_list->size; i > pos; i--) {p = p->previous;}
+            }
             p_new->next = p->next;
             p_new->previous = p;
             p_temp = p->next;

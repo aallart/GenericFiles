@@ -1,7 +1,7 @@
 /**
- * @file double_linked_list_int.h
+ * @file double_linked_list.h
  *
- * @brief Simple definition of double linked list containing `int` values
+ * @brief Simple definition of double linked list containing generic values
  *
  * This is a simple definition of a double linked list containing `int`
  * values implemented using cells linked by pointers. Warning: the cells
