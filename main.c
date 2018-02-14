@@ -21,9 +21,10 @@ int main(void) {
 //	deallocate_list(liste);
 
     dlist *p_list = nil();
+    print_list(p_list);printf(" => empty = %s\n", (is_empty(p_list))?"yes":"no");
     cons(p_list, elements[0]);cons(p_list, elements[1]);cons(p_list, elements[2]);
     snoc(p_list, elements[3]);
-    print_list(p_list);
+    print_list(p_list);printf(" => empty = %s\n", (is_empty(p_list))?"yes":"no");
 
     return 0;
 }

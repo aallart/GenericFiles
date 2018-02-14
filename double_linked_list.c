@@ -64,3 +64,7 @@ void snoc(dlist *p_list, elt data){
 int size(const dlist *p_list){
     return p_list->size;
 }
+
+bool is_empty(const dlist *p_list){
+    return size(p_list)==0;
+}
