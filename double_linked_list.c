@@ -75,3 +75,23 @@ elt get_element(const dlist *p_list, int pos){
     for(i = 0; i < pos; i++) {p = p->next;}
     return p->data;
 }
+
+void insert_element(dlist *p_list, int pos, elt data){
+    if (pos >= 0 && pos <= p_list->size){
+        if(pos == 0) cons(p_list, data);
+        else if(pos == p_list->size) snoc(p_list, data);
+        else{
+            int i;
+            cell *p = p_list->first, *p_new = NULL;
+            p_new = malloc(sizeof(*p_new));
+            if(p_new == NULL) exit(EXIT_FAILURE);
+            p_new->data = data;
+            for(i = 1; i < pos; i++){p = p->next;}
+            p_new->next = p->next;
+            p_new->previous = p;
+            p->next = p_new;
+            p->next->previous = p_new;
+            p_list->size += 1;
+        }
+    }
+}
