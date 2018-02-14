@@ -60,3 +60,7 @@ void snoc(dlist *p_list, elt data){
         p_list->size += 1;
     }
 }
+
+int size(const dlist *p_list){
+    return p_list->size;
+}
