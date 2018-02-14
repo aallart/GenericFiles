@@ -16,7 +16,7 @@ void cons(list *liste, elt e) {
     if(liste != NULL){
         cell *p_cell = NULL;
         p_cell = malloc(sizeof(cell));
-        if (p_cell == NULL {exit(EXIT_FAILURE);}
+        if (p_cell == NULL) {exit(EXIT_FAILURE);}
         p_cell->data = e;
         p_cell->next = liste->first;
         liste->first = p_cell;
@@ -46,8 +46,8 @@ elt get_element(list *liste, int n) {
 }
 
 void insert_element(list *liste, elt e, int place) {
-	if(place == 0) {cons(liste, e);}
-	else{
+	if(place == 1) {cons(liste, e);}
+	else if(place > 0){
 		if(place > size(liste)+1) {place = size(liste)+1;}
 		int i = 1;
 		cell *p = liste->first, *new = NULL;
