@@ -25,13 +25,13 @@ int main(void) {
     //print_list(p_list);printf(" => empty = %s\n", (is_empty(p_list))?"yes":"no");
     cons(p_list, elements[0]);cons(p_list, elements[1]);cons(p_list, elements[2]);
     snoc(p_list, elements[3]);
-    print_list(p_list);//printf(" => empty = %s", (is_empty(p_list))?"yes":"no");
+    //print_list(p_list);//printf(" => empty = %s", (is_empty(p_list))?"yes":"no");
     //for(i = 0; i < 4; i++) {printf("\n%dth element: ", i); print_elt(get_element(p_list, i));}
     printf("\n");
-    insert_element(p_list, 6, elements[4]);print_list(p_list);
+    insert_element(p_list, 3, elements[4]);print_list(p_list);
     printf("\n");
     //print_elt(p_list->last->previous->next->previous->data);
-    //remove_element(p_list, 0);print_list(p_list);
+    remove_element(p_list, 3);print_list(p_list);
 
     return 0;
 }

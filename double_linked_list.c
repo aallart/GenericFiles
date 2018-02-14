@@ -124,8 +124,13 @@ void remove_element(dlist *p_list, int pos){
         }
         else{       //somewhere in the middle
             int i;
-            p = p_list->first;
-            for(i = 1; i <= pos; i++){p = p->next;}
+            if(pos < p_list->size/2){
+                p = p_list->first;
+                for(i = 1; i <= pos; i++){p = p->next;}
+            }else{
+                p = p_list->last;
+                for(i = p_list->size-1; i > pos; i--) {p = p->previous;}
+            }
             p->previous->next = p->next;
             p->next->previous = p->previous;
         }

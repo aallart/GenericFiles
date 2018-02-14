@@ -30,8 +30,8 @@
 	void cons(list *liste, elt e);      //append e to liste
 	int size(list *liste);
 	bool is_empty(list *liste);
-	elt get_element(list *liste, int n);
-	void insert_element(list *liste, elt e, int place);     //Start counting at 0: place < 0 insert no element and place > size insert at the end
+	elt get_element(list *liste, int n);        //Start counting at 0: invalid index produces segmentation fault
+	void insert_element(list *liste, elt e, int place);     //Start counting at 0: place < 0 or > size insert no element
 	void remove_element(list *liste, int place);    //Start counting at 0: place <0 or >= size removes no element
 	void deallocate_list(list *liste);
 	void print_list(list *liste);

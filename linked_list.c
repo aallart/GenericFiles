@@ -42,8 +42,7 @@ elt get_element(list *liste, int n) {
 
 void insert_element(list *liste, elt e, int place) {
 	if(place == 0) {cons(liste, e);}
-	else if(place > 0){
-		if(place > size(liste)) {place = size(liste);}
+	else if(place > 0 && place <= size(liste)){
 		int i;
 		cell *p = liste->first, *new = NULL;
 		new = malloc(sizeof(cell));
