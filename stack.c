@@ -1,27 +1,27 @@
-#include "stack_int.h"
+#include "stack.h"
 
-list* create_empty_stack(){
+stack* nil_stack(){
 	return nil();
 }
 
-bool is_stack_empty(list* stack){
-	return is_empty(stack);
+bool is_stack_empty(stack* p_stack){
+	return is_empty(p_stack);
 }
 
-int pop(list* stack){
-	int elt = get_element(stack, 0);
-	remove_element(stack, 0);
-	return elt;
+elt pop(stack* p_stack){
+	elt e = get_element(p_stack, 0);
+	remove_element(p_stack, 0);
+	return e;
 }
 
-void push(list *stack, elt e){
-	insert_element(stack, e, 0);
+void push(stack* p_stack, elt e){
+	insert_element(p_stack, e, 0);
 }
 
-void print_stack(list *stack){
-	print_list(stack);
+void print_stack(stack* p_stack){
+	print_list(p_stack);
 }
 
-void deallocate_stack(list *stack){
-	deallocate_list(stack);
+void deallocate_stack(stack* p_stack){
+	deallocate_list(p_stack);
 }

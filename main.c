@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "double_linked_list.h"
+#include "queue.h"
 
 int main(void) {
     int i;
@@ -32,6 +32,22 @@ int main(void) {
 //    printf("\n");
 //    //print_elt(p_list->last->previous->next->previous->data);
 //    remove_element(p_list, 3);print_list(p_list);
+
+//    //stack ADT tests
+//    stack *p_stack = nil_stack();
+//    printf("\n%d\n", is_stack_empty(p_stack));
+//    push(p_stack, elements[0]);push(p_stack, elements[1]);push(p_stack, elements[2]);
+//    print_stack(p_stack);
+//    printf("\n%d\n", is_stack_empty(p_stack));
+//    print_elt(pop(p_stack));print_stack(p_stack);
+
+//    //queue ADT tests
+//    queue* p_queue = nil_queue();
+//    printf("\n%d\n", is_queue_empty(p_queue));
+//    enqueue(p_queue, elements[0]);enqueue(p_queue, elements[1]);enqueue(p_queue, elements[2]);
+//    printf("\n%d\n", is_queue_empty(p_queue));
+//    print_queue(p_queue);
+//    print_elt(dequeue(p_queue));print_queue(p_queue);
 
     return 0;
 }
