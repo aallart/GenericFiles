@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "queue.h"
+#include "binary_heap.h"
 
 int main(void) {
     int i;
@@ -49,5 +49,11 @@ int main(void) {
 //    print_queue(p_queue);
 //    print_elt(dequeue(p_queue));print_queue(p_queue);
 
+
+    //binary heap ADT tests
+    heap* p_heap = nil_heap();
+    //printf("empty = %s\n", (is_heap_empty(p_heap))?"yes":"no");
+    insert_heap(p_heap, elements[0]);insert_heap(p_heap, elements[1]);insert_heap(p_heap, elements[2]);insert_heap(p_heap, elements[3]);
+    print_heap(p_heap);
     return 0;
 }

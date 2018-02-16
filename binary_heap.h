@@ -29,6 +29,20 @@
 
 #include <stdbool.h>
 
+
+/**
+ * @brief An alias for the structure representing the data in the cells
+ */
+typedef struct element elt;
+
+/**
+ * @brief The structure representing the data in the cells
+ */
+struct element {
+    /** the value in the cell (can be modified) */
+    int value;
+};
+
 /**
  * @brief An alias to the structure representing the nodes of the
  *        binary heap.
@@ -65,20 +79,6 @@ struct heap {
 };
 
 /**
- * @brief An alias for the structure representing the data in the cells
- */
-typedef struct element elt;
-
-/**
- * @brief The structure representing the data in the cells
- */
-struct element {
-    /** the value in the cell (can be modified) */
-    int value;
-};
-
-
-/**
  * @brief print the basic elt data type
  *
  * @param e is the element to be printed
@@ -86,19 +86,29 @@ struct element {
 void print_elt(elt e);
 
 /**
+ * @brief print the heap starting from given level
+ *
+ * @param p_node is a pointer to the first node
+ * @param level to be defined
+ */
+void print_level(node *p_node, int level);
+
+/**
  * @brief compare two elements
  *
  * @param a is the first element
  * @param b is the second one
+ *
+ * @return -1 if a<b, 0 if a=b and 1 if a>b
  */
-void comp_elt(elt a, elt b);
+int comp_elt(elt a, elt b);
 
 /**
  * @brief Create a nil binary heap.
  *
  * @return a pointer to a new empty binary heap
  */
-heap* nil();
+heap* nil_heap();
 
 /**
  * @brief Is the binary heap empty?
@@ -110,7 +120,9 @@ heap* nil();
  *
  * @pre `p_heap` is not `NULL`
  */
-bool is_empty(heap *p_heap);
+bool is_heap_empty(heap *p_heap);
+
+node *father_node(heap *p_heap, int n);
 
 /**
  * @brief Insert a new value in the binary heap. The
@@ -128,7 +140,7 @@ bool is_empty(heap *p_heap);
  *       in which the value `value` has been inserted according
  *       to the algorithm presented in the lab session.
  */
-void insert(heap *p_heap, elt e);
+void insert_heap(heap *p_heap, elt e);
 
 /**
  * @brief Extract the minimum value in the binary heap. The
