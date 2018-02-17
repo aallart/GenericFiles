@@ -55,5 +55,9 @@ int main(void) {
     //printf("empty = %s\n", (is_heap_empty(p_heap))?"yes":"no");
     insert_heap(p_heap, elements[0]);insert_heap(p_heap, elements[1]);insert_heap(p_heap, elements[2]);insert_heap(p_heap, elements[3]);
     print_heap(p_heap);
+    while(p_heap->root != NULL) {
+        //printf("\n Min in the heap = ");
+        printf("\t");print_elt(extract_min(p_heap));
+    } printf("\n");
     return 0;
 }

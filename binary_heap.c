@@ -48,42 +48,43 @@ void insert_heap(heap *p_heap, elt e){
 	p_heap->size++;
 }
 
-//int extract_min(heap_int *p_heap){
-//		//find min and free the memory
-//	heap_int_node *father = go_to_father_node(p_heap, p_heap->size), *p_last = NULL;
-//	heap_int_node *p;
-//	int min = p_heap->root->value, temp;
-//	if(father->left == NULL){
-//		free(p_last);
-//		p_heap->root = NULL;
-//	}
-//	else{
-//		if(father->right == NULL) p_last = father->left;
-//		else p_last = father->right;
-//		p_heap->root->value = p_last->value;
-//		if(father->right == p_last) father->right = NULL;
-//		else father->left = NULL;
-//		free(p_last);
-//		p_heap->size--;
-//			//resort the heap
-//		p = p_heap->root;
-//		while((p->left != NULL) && (p->left->value < p->value || (p->right != NULL && p->right-> value < p->value))){
-//			if(p->right == NULL || (p->right != NULL && p->right->value > p->left->value)){
-//				temp = p->left->value;
-//				p->left->value = p->value;
-//				p->value = temp;
-//				p = p->left;
-//			}
-//			else{
-//				temp = p->right->value;
-//				p->right->value = p->value;
-//				p->value = temp;
-//				p = p->right;
-//			}
-//		}
-//	}
-//	return min;
-//}
+elt extract_min(heap *p_heap){
+            //find min and free the memory
+	node *father = father_node(p_heap, p_heap->size), *p_last = NULL;
+	node *p;
+	elt min = p_heap->root->data, temp;
+	if(father->left == NULL){ //No need to resort the heap, it will be empty empty!
+        free(father);
+		p_heap->root = NULL;
+    }
+	else{
+		if(father->right == NULL) p_last = father->left;
+		else p_last = father->right;
+		p_heap->root->data = p_last->data;
+		if(father->right == p_last) father->right = NULL;
+		else father->left = NULL;
+		free(p_last);
+			//resort the heap
+		p = p_heap->root;
+		while(p->left != NULL && comp_elt(p->left->data, p->data) == -1 || p->right != NULL && comp_elt(p->right->data, p->data) == -1){
+                    //move value to left down
+			if(p->right == NULL || (p->right != NULL && comp_elt(p->right->data, p->left->data) == 1)){
+				temp = p->left->data;
+				p->left->data = p->data;
+				p->data = temp;
+				p = p->left;
+			}       //Move it to right down
+			else{
+				temp = p->right->data;
+				p->right->data = p->data;
+				p->data = temp;
+				p = p->right;
+			}
+		}
+	}
+	p_heap->size--;
+	return min;
+}
 
 void print_elt(elt e){
     printf("%d", e.value);
